@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Only</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="header">
+        <h1>Members Only</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <% if (locals.user) { %>
+                    <li><a href="/log-out">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/log-in">Login</a></li>
+                    <li><a href="/sign-up">Register</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <% if (user) { %>
+            <h1>Welcome, <%= user.username %>!</h1>
+          <% } else { %>
+            <h1>Welcome, Guest!</h1>
+        <% } %>
+        <h2>Community Posts:</h2>
+       
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2025 Members Only</p>
+    </div>
+</body>
+</html>

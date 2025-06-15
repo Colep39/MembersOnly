@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Log In</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="header">
+        <h1>Members Only</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <% if (locals.user) { %>
+                    <li><a href="/log-out">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/log-in">Login</a></li>
+                    <li><a href="/sign-up">Register</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+    <div id="container">
+        <h1>Log In</h1>
+        <form action="/log-in" method="POST" id="log-in-form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Log In</button>
+            </div>
+            <div>
+                <p>Don't have an account? <a href="/sign-up">Register Today</a></p>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+        <p>&copy; 2025 Members Only</p>
+    </div>
+</body>
+</html>

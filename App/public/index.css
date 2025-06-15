@@ -1,0 +1,133 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #517fc0;
+    border-bottom: 1px solid #ccc;
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+#header nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#content {
+    flex: 1; /* This makes content grow and push footer down */
+}
+
+#content h2 {
+    text-align: center;
+}
+
+#footer {
+    padding: 1rem;
+    text-align: center;
+    background-color: #517fc0;
+    border-top: 1px solid #ccc;
+}
+h1, h2 {
+    text-align: center;
+}
+#log-in-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#log-in-form label{
+    display: block;
+    margin-bottom: 0.5rem;
+
+}
+#log-in-form input[type="text"]{
+    width: 90%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#log-in-form input[type="password"]{
+    width: 90%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#log-in-form button{
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #517fc0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
+#log-in-form button:hover {
+    background-color: #4169a1;
+}
+#sign-up-form{
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#sign-up-form label{
+    display: block;
+    margin-bottom: 0.5rem;
+
+}
+#sign-up-form input{
+    width: 90%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#sign-up-form button{
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #517fc0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#sign-up-form button:hover{
+    background-color:  #4169a1;
+}
+#container{
+    flex: 1;
+}
