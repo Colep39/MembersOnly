@@ -29,6 +29,28 @@
         <% } %>
         <h2>Community Posts:</h2>
        
+        <div id="messages">
+            <% messages.forEach(msg => { %>
+              <div class="message">
+                <h3><%= msg.title %></h3>
+                <p><strong><%= msg.username %>:</strong> <%= msg.content %></p>
+                <small><%= new Date(msg.created_at).toLocaleString() %></small>
+
+                <% if (user && user.membership === 'Admin') {%> 
+                    <form action="/messages/<%= msg.id %>?_method=DELETE" method="POST" class="delete-form">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } %>
+              </div>
+            <% }) %>
+        </div>
+                 
+        <form action="/messages" method="POST" id="message-form">
+            <input type="text" name="title" placeholder="Title" required />
+            <textarea name="content" placeholder="Your message"></textarea>
+            <button type="submit">Post</button>
+        </form>
+          
     </div>
 
     <div id="footer">

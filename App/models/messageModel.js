@@ -1,21 +1,33 @@
 const db = require("../db");
 
 exports.getMessages = async () => {
-    const result = await db.query(
-    `SELECT 
-     FROM messages m, users u
-     WHERE m.user_id = u.id
-    `
-    );
-    return result.rows;
+  const result = await db.query(`
+    SELECT messages.*, users.username 
+    FROM messages 
+    JOIN users ON messages.user_id = users.id 
+    ORDER BY messages.created_at DESC
+  `);
+  return result.rows;
 };
 
-exports.createMessage = async (userId, title, content, created_at) => {
-    const result = await db.query(
-    `INSERT INTO messages (user_id, title, content, created_at)
-     VALUES ($1, $2, $3, $4)
+exports.createMessage = async (userId, title, content) => {
+  const result = await db.query(
+    `INSERT INTO messages (user_id, title, content)
+     VALUES ($1, $2, $3)
      RETURNING id`,
-    [userId, title, content, created_at]
-    );
-    return result.rows[0].id;
+    [userId, title, content]
+  );
+  return result.rows[0].id;
 };
+
+exports.deleteMessage = async (messageId) => {
+    await db.query(`
+        DELETE FROM messages
+        WHERE id = $1
+    `, [messageId])
+    .catch(err => {
+        console.error("Error deleting message:", err);
+        throw new Error("Failed to delete message");
+    });
+    return messageId;
+}

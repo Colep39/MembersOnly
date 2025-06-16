@@ -14,6 +14,9 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+const methodOverride = require("method-override");
+app.use(methodOverride('_method'));
+
 // Serve static files from /public
 app.use(express.static(path.join(__dirname, 'public')));
 // Passport session setup
@@ -23,7 +26,22 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", routes);
 
-app.get("/", (req, res) => res.render("index", { user: req.user }));
+app.get("/", async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT messages.*, users.username
+      FROM messages
+      JOIN users ON messages.user_id = users.id
+      ORDER BY messages.created_at DESC
+    `);
+    res.render("index", { user: req.user, messages: result.rows });
+  } catch (err) {
+    console.error("DB error:", error);
+    res.status(500).send("Error fetching messages");
+  }
+});
+
+
 app.get("/sign-up", (req, res) => res.render("sign-up-form", { user: req.user }));
 app.get("/log-in", (req, res) => res.render("log-in-form", { user: req.user }));
 app.get("/log-out", (req, res, next) => {
@@ -54,6 +72,8 @@ app.post("/sign-up", async (req, res, next) => {
      next(error);
     }
  });
+
+
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
